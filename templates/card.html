@@ -1,0 +1,37 @@
+<div class="home">
+		<p class="intro">
+				I am a full stack developer based in Cape Breton, Nova Scotia,
+				specializing in React, Svelte, HTML/CSS, Node.js, Rust,
+				and SQL. With a passion for creating innovative and efficient
+				solutions, I bring a wealth of experience and knowledge
+				to every project. My dedication to quality and attention to
+				detail ensures that I deliver exceptional results that
+				meet and exceed client expectations. With a unique blend of
+				technical skills and creative problem-solving abilities,
+				I am well-equipped to tackle a wide range of development
+				challenges. I studied IT programming at NSCC, have a BA in
+				anthropology from Trent University and studied Editing at
+				George Brown College.
+				<a href="https://github.com/Naokotani/"> Check out my Github</a>
+				to see more projects.
+		</p>
+		{{#links}}
+		<div class="cards">
+				<div class="cards-grid">
+						<div class="card">
+								<a href="#"
+									 hx-get="{{API_URL}}blog/{{link}}"
+									 hx-push-url="true" hx-target="#contentDiv"
+									 hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})"
+									 hx-swap="innerHTML">
+										<img alt="{{title}} picture" src="/images/{{image}}"/>
+										<div class="card-content">
+												<h2>{{title}}</h2>
+												<p>{{summary}}</p>
+										</div>
+								</a>
+						</div>
+				</div>
+		</div>
+		{{/links}}
+</div>

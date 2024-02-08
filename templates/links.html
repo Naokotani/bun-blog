@@ -1,0 +1,12 @@
+<nav>
+<h2 class="post-header">Projects</h2>
+		<ul>
+				{{#links}}
+				<li>
+						<a href="#" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv" hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})" hx-swap="innerHTML">
+								{{label}}
+						</a>
+				</li>
+				{{/links}}
+		</ul>
+</nav>
