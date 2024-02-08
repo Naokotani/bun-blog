@@ -5,6 +5,7 @@ import getStatic from './src/static';
 import getCards from './src/cards';
 
 Bun.serve({
+	port: process.env.PORT,
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
 
