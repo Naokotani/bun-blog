@@ -27,7 +27,8 @@ export default async function getPost(blog: string, hx: boolean ) {
 
 async function getFileContents(path: string){
 	try {
-		return Bun.file(path).text()
+		const file = await Bun.file(path).text()
+		return file;
 	} catch(e) {
 		console.error(e)
 		return false;
