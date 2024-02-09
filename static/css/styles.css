@@ -231,7 +231,7 @@ div.summary {
 }
 
 .card {
-	max-width: 20rem;
+	width: 20rem;
 	min-height: 20rem;
 	background-color: var(--grey);
 	border-radius: 5px;
@@ -239,14 +239,13 @@ div.summary {
 }
 
 .card img {
-	max-width: 100%;
+	width: 20rem;
 }
 
 .card h2 {
 	margin: 0;
 	font-size: var(--h5);
 }
-
 
 div.card-content {
 	padding: 1rem;

@@ -6,21 +6,35 @@ export default async function getStatic(url: string) {
 		const filename = match[1];
 
 		if (/\w+\.css$/.test(filename)) {
-			const file = Bun.file(`static/css/${filename}`);
-			return new Response(file);
+			try {
+				const file = Bun.file(`static/css/${filename}`);
+				return new Response(file);
+			} catch (e) {
+				console.error(e);
+				return new Response("404: file not found");
+			}
 		}
 
 		if (/\w+\.svg$/.test(filename)) {
-			const file = Bun.file(`static/icons/${filename}`);
-			return new Response(file);
+			try {
+				const file = Bun.file(`static/icons/${filename}`);
+				return new Response(file);
+			} catch(e) {
+				console.error(e);
+				return new Response("404: file not found");
+			}
 		}
 
 		if (/\w+\.(png|jpg)$/.test(filename)) {
-			const file = Bun.file(`static/images/${filename}`);
-			return new Response(file);
+			try {
+				const file = Bun.file(`static/images/${filename}`);
+				return new Response(file);
+			} catch(e) {
+				console.error(e);
+				return new Response("404: file not found");
+			}
 		}
 	}
-	return new Response("file not found");
-
+	return new Response("404: file not found");
 }
 

@@ -2,8 +2,10 @@ const Mustache = require("mustache");
 const API_URL = process.env.API_URL
 
 export default async function getPost(blog: string, hx: boolean ) {
-	const index = await Bun.file("static/blog-index.html").text();
-	const post = await Bun.file(`posts/${blog}`).text();
+	const post = await getFileContents(`posts/${blog}`);
+	const index = await getFileContents("static/blog-index.html");
+
+	if (!index || !post) return new Response("404: File not found");
 
 	if (hx) {
 		return new Response(post);
@@ -20,5 +22,14 @@ export default async function getPost(blog: string, hx: boolean ) {
         "Content-Type": "text/html",
       },
     });
+	}
+}
+
+async function getFileContents(path: string){
+	try {
+		return Bun.file(path).text()
+	} catch(e) {
+		console.error(e)
+		return false;
 	}
 }
