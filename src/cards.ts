@@ -16,7 +16,7 @@ export default async function getCards() {
 
 	for (let file of files) {
 		const name = file.split('.');
-		const index: number = images.findIndex(e => e.includes(name[0]));
+		const index: number = images.findIndex(e => e.startsWith('thumb-') && e.includes(name[0]));
 		const post = await Bun.file('posts/' + file).text();
 		const $ = load(post);
 		const summary = $('div.summary p').text();
