@@ -25,7 +25,7 @@ export default async function getCards() {
 			link: file,
 			title: makeTitle(file),
 			API_URL: API_URL,
-			image: images[index],
+			image: `thumb-${images[index]}`,
 			summary: summary,
 		}
 
