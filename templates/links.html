@@ -3,7 +3,7 @@
 		<ul>
 				{{#links}}
 				<li>
-						<a href="#" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv" hx-on::after-request="window.scrollTo({top: 0, behavior: 'smooth'})" hx-swap="innerHTML">
+						<a href="#" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv" hx-swap="innerHTML">
 								{{label}}
 						</a>
 				</li>

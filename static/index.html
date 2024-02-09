@@ -34,6 +34,7 @@
 						<h2 class="post-header">Projects</h2>
 				</nav>
 				<div id="contentDiv"
+						 hx-on::after-swap="window.scrollTo({top: 0, behavior: 'smooth'})"
 						 hx-get="{{API_URL}}cards"
 						 hx-trigger="load delay:300ms"
 						 hx-swap="innerHTML"
