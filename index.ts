@@ -3,6 +3,9 @@ import getBlogs from './src/blogs';
 import getPost from './src/post';
 import getStatic from './src/static';
 import getCards from './src/cards';
+import processImages from './src/processImages';
+
+processImages();
 
 Bun.serve({
 	port: process.env.PORT,
@@ -28,5 +31,4 @@ Bun.serve({
 		}
   },
 });
-
 
