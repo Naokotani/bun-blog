@@ -10,9 +10,7 @@ export default async function getCards() {
 	const files = await readdir(POSTS_PATH);
 	const images = await readdir(IMAGES_PATH);
 	const template = await Bun.file('templates/card.html').text();
-
 	let links: object[] = [];
-
 
 	for (let file of files) {
 		const name = file.split('.');
