@@ -1,16 +1,54 @@
-* Emacs as a CMS blog
+* Introduction
 
-This is a simple Bun application that runs a web server that accepts files from =org-html-export-to-html=. It uses [[https://cheerio.js.org/][cheerio]] to grab summary information and [[https://github.com/janl/mustache.js][Mustache]] to generate HTML templates to display them on the client. 
+This is a simple Bun application that runs a web server that accepts files from =org-html-export-to-html=. It uses [[https://cheerio.js.org/][cheerio]] to grab summary information and [[https://github.com/janl/mustache.js][Mustache]] to generate HTML templates to display them on the client. The web server is designed to run on an Ubuntu VPS, such as on Digital Ocean, but it should run anywhere Bun can run.
 
-I simply use the following Elisp function to send the data to the server:
+* Running
+This application is designed to run on localhost behind a reverse proxy, such as Nginx. A minimal Nginx server block can look something like this:
+
+#+begin_src conf
+  server {
+      server_name mycooldomain.com;
+      location / {
+          proxy_pass http://127.0.0.1:3000;
+      }
+
+      location /cards {
+          proxy_pass http://127.0.0.1:3000;
+      }
+
+      location /blog {
+          proxy_pass http://127.0.0.1:3000;
+      }
+
+      location /blog/* {
+          proxy_pass http://127.0.0.1:3000;
+      }
+#+end_src
+
+The actual process can be initialized with =Bun index.ts=, but ideally you should use a process manager such as [[https://pm2.keymetrics.io/][pm2]] to manage the process and handle logging. Bun will get the port and public facing url from a .env file in the root directory that should look something like this:
+
+#+begin_src conf
+API_URL=https://mycooldomain.com/
+PORT=3000
+#+end_src
+
+The =PORT= and =API_URL= must match what is in your Nginx conf file.
+* Usage
+
+Once the process is running you should only need to push the html (format: =my-post.html=) to the =posts= folder and images to =static/images= (format the image name must match the post name and be =.png= or =.jpg=). The size of the images should be at at least 385X185, but any larger image will be automatically resized by the [[https://sharp.pixelplumbing.com/][sharp]] library.
+
+** A note on the HTML
+Any HTML with =<p>= and =<h1>=, h2 etc. tags should work fine, but the css is designed to work naturally with the output of Emacs =org-html-export-to-html= using the option to only export the body and not the head/body tags. I created this simple function to accomplish this:
 
 #+begin_src emacs-lisp
-(defun nao/export-org-to-blog ()
-  (interactive)
-  (setq org-html-doctype "html5")
-  (let ((filename (org-html-export-to-html nil nil nil t)))
-    (copy-file (concat (file-name-sans-extension filename) ".png")
-               "/rsync:server:/path/to/images" t)
-    (copy-file filename "/rsync:server/path/to/html" t)))
+     (defun nao/export-org-to-blog ()
+     	(interactive)
+       (setq org-html-doctype "html5")
+     	(let ((filename (org-html-export-to-html nil nil nil t)))
+   			(copy-file (concat (file-name-sans-extension filename) ".png")
+  								 "/rsync:server:/path/to/images" t)
+     		(copy-file filename "/rsync:server/path/to/html" t)))
 #+end_src
+
+While the sever side can handle .jpg or .png, this function will not and will only copy .png. I plan to improve the logic of the function also copy .jpg, but for now you would need to rsync into =static/images= manually. I also have future plans to use cheerio to convert the output of =org-html-export-to-html= to semantic html5 on the server in the future so that I can make improved classless CSS that will be more generalized. 
 
