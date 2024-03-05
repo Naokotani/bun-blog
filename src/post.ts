@@ -1,3 +1,4 @@
+import notFound from "./notFound";
 const Mustache = require("mustache");
 const API_URL = process.env.API_URL
 
@@ -5,7 +6,7 @@ export default async function getPost(blog: string, hx: boolean ) {
 	const post = await getFileContents(`posts/${blog}`);
 	const index = await getFileContents("static/blog-index.html");
 
-	if (!index || !post) return new Response("404: File not found");
+	if (!index || !post) return notFound();
 
 	if (hx) {
 		return new Response(post);

@@ -34,7 +34,7 @@ export default async function getCards() {
     links.push(link);
   }
 
-  const view = {
+ const view = {
     intro: intro,
     links: links,
   };

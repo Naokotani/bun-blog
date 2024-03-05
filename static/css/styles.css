@@ -115,7 +115,7 @@ nav {
 	display: none;
 }
 
-h1.mobile-h1 {
+h2.mobile-h1 {
 	font-size: var(--h3);
 	padding: 1rem 1rem 0 1rem;
 }
@@ -133,6 +133,10 @@ header {
 	padding-right: 20%;
 	justify-content: space-between;
 	padding-left: calc(16rem + 10%);
+}
+
+header h2 {
+  font-size: var(--h1);
 }
 
 .git-logo {
@@ -283,6 +287,11 @@ div.card-content h2 p {
 		display: block;
 	}
 
+  .not-found {
+		padding-top: 3rem;
+		padding-left: 20%;
+  }
+
 	#contentDiv {
 		padding-top: 3rem;
 		padding-right: 20%;
@@ -296,6 +305,12 @@ div.card-content h2 p {
 		min-height: calc(100vh - var(--headerHeight));
 		padding-bottom: 5rem;
 	}
+
+  #contentDiv img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
 
 	.cards-grid {
 		display: flex;
