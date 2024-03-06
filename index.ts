@@ -15,7 +15,7 @@ Bun.serve({
     const url = new URL(req.url);
 
     try {
-      if (/\.(css|png|svg)$/.test(req.url)) return await getStatic(req.url);
+      if (/\.(css|png|svg|js)$/.test(req.url)) return await getStatic(req.url);
       if (url.pathname === "/") return await getHome();
       if (url.pathname === "/blog") return getBlogs();
       if (url.pathname === "/cards") return getCards();

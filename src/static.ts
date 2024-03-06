@@ -11,7 +11,25 @@ export default async function getStatic(url: string) {
 				return new Response(file);
 			} catch (e) {
 				console.error(e);
-				return new Response("404: file not found");
+				return new Response("404: file not found", {
+          status: 404
+        });
+			}
+		}
+		if (/\w+\.js$/.test(filename)) {
+			try {
+        console.log("look for js")
+				const file = Bun.file(`static/js/${filename}`);
+				return new Response(file, {
+          headers: {
+            "Content-Type": "script/js",
+          },
+        });
+			} catch (e) {
+				console.error(e);
+				return new Response("404: file not found", {
+          status: 404
+        });
 			}
 		}
 
@@ -31,10 +49,14 @@ export default async function getStatic(url: string) {
 				return new Response(file);
 			} catch(e) {
 				console.error(e);
-				return new Response("404: file not found");
+				return new Response("404: file not found", {
+          status: 404
+        });
 			}
 		}
 	}
-	return new Response("404: file not found");
+	return new Response("404: file not found", {
+    status: 404
+  });
 }
 

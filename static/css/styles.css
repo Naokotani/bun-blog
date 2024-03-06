@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400&display=swap');
+@mport url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400&display=swap');
 
 :root {
-  /*Light mode pallette*/
+  /*dark mode pallette*/
   --white: #fefefe;
   --lightGrey: #bfbfbf;
   --grey: #404040;
@@ -21,8 +21,8 @@
   --textColor: var(--white);
   --lineColor: var(--purple);
   --headerText: var(--white);
-  --cardBg: var(--lightGrey);
-  --cardText: var(--black);
+  --cardBg: var(--grey);
+  --cardText: var(--white);
 	--anchorColor: var(--darkRed);
 	--navColor: var(--deepPurple);
 	--navText: var(--lightPink);
@@ -30,6 +30,7 @@
 	--headerColor: var(--deepPurple);
 	--codeBlocks: var(--purple);
 	--code: var(--lightGrey);
+  --borderColor: var(--purple);
 	--linkColor: var(--lightPink);
 	--linkHover: var(--white);
 
@@ -49,13 +50,53 @@
   /* Fonts */
   --headingFont: 'Source Sans Pro', sans-serif;
   --bodyFont: 'Libre Baskerville', serif;
-  --baseFontSize: 120%;
+  --baseFontSize: 130%;
   --h1: 3.052rem;
   --h2: 2.441rem;
   --h3: 1.953rem;
   --h4: 1.563rem;
   --h5: 1.25rem;
 	--smallText: 0.8rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /*light mode pallette*/
+    --white: #fefefe;
+    --lightGrey: #bfbfbf;
+    --grey: #404040;
+    --darkGrey: #2b2b2b;
+    --black: #141414;
+    --blacker: #000000;
+	  --darkRed: #dd0000;
+	  --red: #ff0000;
+    --lightBlue: #addfff;
+
+    /*Color intentions*/
+    --background: var(--white);
+    --textColor: var(--black);
+    --lineColor: var(--grey);
+    --headerText: var(--black);
+    --cardBg: var(--lightGrey);
+    --cardText: var(--black);
+	  --anchorColor: var(--darkRed);
+	  --navColor: var(--lightBlue);
+	  --navText: var(--darkGrey);
+	  --navHover: var(--blacker);
+	  --headerColor: var(--lightBlue);
+	  --codeBlocks: var(--purple);
+	  --code: var(--grey);
+    --borderColor: var(--lightGrey);
+	  --linkHover: var(--lightGrey);
+  }
+
+  pre {
+    color: var(--white);
+  }
+
+  nav h2 {
+    color: var(--navText);
+  }
 }
 
 *,
@@ -70,7 +111,7 @@ html {
 }
 
 body {
-  background: var(--black);
+  background: var(--background);
   font-family: var(--bodyFont);
   font-weight: 400;
   line-height: 1.75;
@@ -86,11 +127,13 @@ h1, h2, h3, h4, h5 {
   line-height: 1.3;
 }
 
-h1 {
-	line-height: var(--headerHeight);
-  font-size: var(--h2);
-	margin: 0;
+header h2 {
+  line-height: var(--headerHeight);
+  margin: 0;
+  font-size: var(--h3);
 }
+
+h1 {font-size: var(--h2)}
 
 h2 {font-size: var(--h3)}
 
@@ -115,12 +158,42 @@ nav {
 	display: none;
 }
 
-h2.mobile-h1 {
+h1.mobile-h1 {
 	font-size: var(--h3);
 	padding: 1rem 1rem 0 1rem;
 }
 
-header {
+header.mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: var(--navColor);
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  line-height: var(--headerHeight);
+}
+
+div.mobile-social {
+  position: fixed;
+  top: var(--headerHeight);
+  background: var(--cardBg);
+  right: 0;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  height: 6rem;
+  display: none;
+  display: grid;
+}
+
+div.mobile-social a {
+  line-height: 2rem;
+  color: var(--textColor);
+}
+
+header.desktop {
 	background-color: var(--headerColor);
 	position: absolute;
 	width: 100vw;
@@ -133,10 +206,6 @@ header {
 	padding-right: 20%;
 	justify-content: space-between;
 	padding-left: calc(16rem + 10%);
-}
-
-header h2 {
-  font-size: var(--h1);
 }
 
 .git-logo {
@@ -199,6 +268,10 @@ code {
 	color: var(--code);
 }
 
+small {
+	color: var(--code);
+}
+
 ul {
 	padding-left: 1rem;
 }
@@ -220,10 +293,33 @@ div.summary {
 	display: none;
 }
 
+.social-links a+a {
+  padding-left: 0.5rem;
+}
+
+summary {
+	display: none;
+}
+
+.not-found {
+    padding-top: 3rem;
+    padding-left: 20%;
+}
+
 #contentDiv {
 	min-height: calc(100vh - var(--headerHeight));
 	padding-bottom: 5rem;
 	padding: 1rem;
+  max-width: 100vw;
+  margin-top: var(--headerHeight);
+}
+
+#contentDiv img {
+	margin-left: auto;
+  margin-right: auto;
+  display: block;
+  overflow: auto;
+  max-width: 90vw;
 }
 
 .org-src-container {
@@ -236,14 +332,16 @@ div.summary {
 
 .card {
 	width: 20rem;
+  max-width: 90vw;
 	min-height: 20rem;
-	background-color: var(--grey);
+	background-color: var(--cardBg);
 	border-radius: 5px;
 	margin-bottom: 2rem;
 }
 
 .card img {
 	width: 20rem;
+  max-width: 90vw;
 	max-height: 12rem;
 	object-fit: cover;
 }
@@ -257,8 +355,8 @@ div.card-content {
 	padding: 1rem;
 }
 
-div.card-content h2 p {
-	color: var(--white);
+div.card-content {
+	color: var(--cardText);
 }
 
 @media (max-width: 1600px) {
@@ -278,39 +376,46 @@ div.card-content h2 p {
 	}
 }
 
-@media (min-width: 1025px) {
-	header {
+@media (min-width: 1300px) {
+
+  h1 {font-size: var(--h1)}
+
+  h2 {font-size: var(--h2)}
+
+  h3 {font-size: var(--h3);}
+
+  h4 {font-size: var(--h4);}
+
+  h5 {font-size: var(--h5);}
+
+	header.desktop {
 		display: flex;
 	}
+
+  header.mobile {
+    display: none;
+  }
+
+  #mobile-social {
+    display: none;
+  }
 
 	nav {
 		display: block;
 	}
 
-  .not-found {
-		padding-top: 3rem;
-		padding-left: 20%;
-  }
-
 	#contentDiv {
-		padding-top: 3rem;
 		padding-right: 20%;
 		margin-left: 16rem;
 		margin-top: var(--headerHeight);
 		padding-left: 10%;
 		z-index: -5;
-		border-top: solid 4px var(--purple);
-		border-left: solid 4px var(--purple);
-		border-radius: 5px;
+		border-top: solid 4px var(--borderColor);
+		border-left: solid 4px var(--borderColor);
+		border-radius: 2px;
 		min-height: calc(100vh - var(--headerHeight));
 		padding-bottom: 5rem;
 	}
-
-  #contentDiv img {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
 
 	.cards-grid {
 		display: flex;

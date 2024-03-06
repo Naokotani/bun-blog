@@ -21,7 +21,7 @@ export default async function getCards() {
     );
     const post = await Bun.file("posts/" + file).text();
     const $ = load(post);
-    const summary = $("div.summary p").text();
+    const summary = $("summary").text();
 
     const link = {
       link: file,
@@ -30,7 +30,6 @@ export default async function getCards() {
       image: `${images[index]}`,
       summary: summary,
     };
-
     links.push(link);
   }
 
