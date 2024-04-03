@@ -16,9 +16,25 @@ export default async function getStatic(url: string) {
         });
 			}
 		}
+
+		if (/\w+\.json$/.test(filename)) {
+			try {
+				const file = Bun.file(`static/json/${filename}`);
+				return new Response(file, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+			} catch (e) {
+				console.error(e);
+				return new Response("404: file not found", {
+          status: 404
+        });
+			}
+		}
+
 		if (/\w+\.js$/.test(filename)) {
 			try {
-        console.log("look for js")
 				const file = Bun.file(`static/js/${filename}`);
 				return new Response(file, {
           headers: {

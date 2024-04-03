@@ -1,6 +1,7 @@
 import { readdir } from "node:fs/promises";
 import path from "path";
 import { load } from "cheerio";
+import getRing from "./ring";
 const Mustache = require("mustache");
 const POSTS_PATH = path.join(__dirname, "../posts/");
 const IMAGES_PATH = path.join(__dirname, "../static/images/");
@@ -33,7 +34,7 @@ export default async function getCards() {
     links.push(link);
   }
 
- const view = {
+  const view = {
     intro: intro,
     links: links,
   };

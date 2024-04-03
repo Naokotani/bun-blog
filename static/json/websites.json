@@ -1,0 +1,34 @@
+[
+    {
+        "name": "shom.dev",
+        "slug": "@shom",
+		"about": "I like people, dogs, photography, scuba-diving, computers, open-source software, privacy, and generally improving things where I can.",
+        "url": "https://shom.dev",
+        "rss": "https://shom.dev/index.xml",
+		"owner": "Shom Bandopadhaya"
+    },
+	{
+        "name": "Benoit J - My mostly tech blog",
+        "slug": "@benoitj",
+		"about": "Messing around with computers and coding since I was 8. Now getting paid to do what I love.",
+        "url": "https://blog.benoitj.ca",
+        "rss": "https://blog.benoitj.ca/posts/index.xml",
+		"owner": "Benoit J"
+    },
+    {
+        "name": "Trevor Arjeski's Site",
+        "slug": "@trev",
+		"about": "I am a programmer working with Rust in the crypto industry.",
+        "url": "https://trevarj.github.io/",
+        "rss": "https://trevarj.github.io/index.xml",
+		"owner": "Trevor Arjeski"
+    },
+    {
+        "name": "Chris Hughes dot Dev",
+        "slug": "@naokotani",
+		"about": "I am a full stack developer based in Cape Breton, Nova Scotia",
+        "url": "https://chris-hughes.dev",
+        "rss": "https://chris-hughes.dev/rss",
+		"owner": "Chris Hughes"
+    }
+]

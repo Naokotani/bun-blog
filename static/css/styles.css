@@ -33,6 +33,7 @@
   --borderColor: var(--purple);
 	--linkColor: var(--lightPink);
 	--linkHover: var(--white);
+  --footerColor: var(--deepPurple);
 
   /*Styles*/
   --line: solid 2px var(--lineColor);
@@ -71,6 +72,7 @@
 	  --darkRed: #dd0000;
 	  --red: #ff0000;
     --lightBlue: #addfff;
+    --darkBlue: #addfff;
 
     /*Color intentions*/
     --background: var(--white);
@@ -88,6 +90,7 @@
 	  --code: var(--grey);
     --borderColor: var(--lightGrey);
 	  --linkHover: var(--lightGrey);
+    --footerColor: var(--lightBlue);
   }
 
   pre {
@@ -118,6 +121,7 @@ body {
   color: var(--textColor);
 }
 
+
 p {margin-bottom: 1rem;}
 
 h1, h2, h3, h4, h5 {
@@ -143,6 +147,10 @@ h4 {font-size: var(--h5);}
 
 h5 {font-size: var(--h5);}
 
+.h3 {font-size: var(--h3);}
+.h4 {font-size: var(--h4);}
+.h5 {font-size: var(--h5);}
+
 small, .text_small {font-size: var(--smallText);}
 
 nav {
@@ -156,6 +164,29 @@ nav {
 	padding-top: 8rem;
 	padding-left: 2rem;
 	display: none;
+}
+
+nav ul {
+}
+
+footer {
+  width: 100vw;
+  background: var(--footerColor);
+  height: 5rem;
+  padding-left: 48%;
+}
+
+footer p {
+  margin: 0;
+  padding-top: 1rem;
+}
+
+footer a {
+  color: var(--textColor);
+}
+
+footer a + a {
+  padding-left: 1.8rem;
 }
 
 h1.mobile-h1 {
@@ -203,9 +234,9 @@ header.desktop {
 	z-index: 10;
 	height: var(--headerHeight);
 	display: none;
-	padding-right: 20%;
 	justify-content: space-between;
-	padding-left: calc(16rem + 10%);
+	padding-left: calc(16rem + 9%);
+	padding-right: 18%;
 }
 
 .git-logo {
@@ -221,18 +252,12 @@ a {
 	color: var(--linkColor);
 }
 
-a:hover {
-	--linkColor: var(--linkHover);
-	color: var(--linkColor);
-}
-
 p a {
 	color: var(--anchorColor);
 }
 
-p a:hover {
-	--linkHover: var(--red);
-	color: var(--linkHover);
+ a.anchor {
+  color: var(--anchorColor);
 }
 
 header a {
@@ -359,6 +384,27 @@ div.card-content {
 	color: var(--cardText);
 }
 
+.ring-head {
+  margin-top: 1rem;
+}
+
+.ring-widget a + a {
+  padding-left: 1rem;
+}
+
+.ring-about {
+  min-height: 8rem;
+  margin-bottom: 0;
+}
+
+.ring-desktop {
+  display: none;
+}
+
+footer {
+  display: none;
+}
+
 @media (max-width: 1600px) {
 	.cards {
 		padding-left: calc(50% - 10rem);
@@ -377,6 +423,13 @@ div.card-content {
 }
 
 @media (min-width: 1300px) {
+  main {
+    padding-left: 16rem;
+  }
+
+  footer {
+    display: block;
+  }
 
   h1 {font-size: var(--h1)}
 
@@ -405,10 +458,9 @@ div.card-content {
 	}
 
 	#contentDiv {
-		padding-right: 20%;
-		margin-left: 16rem;
 		margin-top: var(--headerHeight);
 		padding-left: 10%;
+		padding-right: 20%;
 		z-index: -5;
 		border-top: solid 4px var(--borderColor);
 		border-left: solid 4px var(--borderColor);
@@ -416,6 +468,54 @@ div.card-content {
 		min-height: calc(100vh - var(--headerHeight));
 		padding-bottom: 5rem;
 	}
+
+  #web-ring {
+		border-left: solid 4px var(--borderColor);
+		padding-left: 10%;
+		padding-right: 20%;
+    padding-bottom: 3rem;
+		border-bottom: solid 4px var(--borderColor);
+  }
+
+  .ring-desktop {
+    display: block;
+  }
+
+  #web-ring h2 {
+    text-align: center;
+    border-bottom: var(--line);
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .ring-container {
+    margin: auto;
+    max-width: 40rem;
+  }
+
+  .craftering {
+	  margin: auto;
+	  text-align: center;
+  }
+
+  .ring-widget {
+    display: flex;
+    justify-content: space-between;
+    alight-items: center;
+    height: var(--h3);
+    line-height: var(--h3);
+  }
+
+  .ring-widget button {
+    background: var(--buttonColor);
+    box-shadow: var(--cardShadow:);
+    border: none;
+    cursor: pointer;
+  }
+
+  .craftering .center-ring {
+    padding: 0 1rem;
+  }
 
 	.cards-grid {
 		display: flex;

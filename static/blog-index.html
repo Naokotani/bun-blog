@@ -15,6 +15,7 @@
 						name="description"
 						content="A Developer blog for Chris Hughes. Specializes in JavaScript, Rust, Web development, SQL" />
 				<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+        <script src="js/menu.js" defer></script>
 		</head>
 		<body>
 				<header class="desktop">
@@ -43,7 +44,7 @@
 							 hx-swap="innerHTML"
 							 hx-push-url="{{API_URL}}"
 							 hx-target="#contentDiv">
-						<h2>Chris Hughes dot Dev</h2>
+						<h2>Chris Hughes.Dev</h2>
 						</a>
             <a href="javascript:void(0);" onclick="handleSocial()">
                 <i class="fa fa-bars menu"></i>
@@ -66,12 +67,28 @@
 						 hx-trigger="load delay:300ms"
 						 class="linksBar"
 						 hx-swap="outerHTML">
-						<h2 class="post-header">Projects</h2>
 				</nav>
-				<div id="contentDiv"
-						 hx-on::after-swap="window.scrollTo({top: 0, behavior: 'smooth'})">
-						{{{post}}}
-				</div>
-        <script src="js/menu.js"></script>
+        <main>
+				    <div id="contentDiv"
+						     hx-on::after-swap="window.scrollTo({top: 0, behavior: 'smooth'})">
+						    {{{post}}}
+				    </div>
+            <div id="web-ring">
+                <div
+                  href="#"
+			            hx-get="{{API_URL}}/ring/next/999"
+			            hx-target="#web-ring"
+					        hx-trigger="load delay:300ms"
+			            hx-swap="innerHTML">
+                </div>
+            </div>
+        </main>
+        <footer>
+            <a href="{{API_URL}}">Home</a>
+            <a href="{{API_URL}}">Email</a>
+            <div>
+                <small>&copy; Chris Hughes 2024</small>
+            </div>
+        </footer>
 		</body>
 </html>
