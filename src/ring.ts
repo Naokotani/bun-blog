@@ -15,7 +15,7 @@ export default async function getRing(index: string, next: boolean) {
   if (next) {
     newIndex = parseInt(index) + 1 >= length ? 0 : parseInt(index) + 1;
   } else {
-    newIndex = parseInt(index) - 1 <= 0 ? length - 1 : parseInt(index) - 1;
+    newIndex = parseInt(index) - 1 < 0 ? length - 1 : parseInt(index) - 1;
   }
 
   const site = ring[newIndex];
