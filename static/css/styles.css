@@ -2,6 +2,32 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400&display=swap');
 
 :root {
+  /*Styles*/
+  --line: solid 2px var(--lineColor);
+  --headerHeight: 5rem;
+  --containerPadding: 10%;
+
+  /*Elevations*/
+  --boxShadow: 0 2px 18px rgb(34 34 34 / 20%);
+  --boxShadowHover: 3px 6px 23px rgb(40 40 40 / 20%);
+  --cardTransition: box-shadow 200ms;
+
+  /* Fonts */
+  --headingFont: 'Source Sans Pro', sans-serif;
+  --bodyFont: 'Libre Baskerville', serif;
+  --baseFontSize: 130%;
+  --h1: 3.052rem;
+  --h2: 2.441rem;
+  --h3: 1.953rem;
+  --h4: 1.563rem;
+  --h5: 1.25rem;
+	--smallText: 0.8rem;
+
+  --cardWidth: 20rem;
+  --cardGap: 5rem;
+}
+
+.dark {
   /*dark mode pallette*/
   --white: #fefefe;
   --lightGrey: #bfbfbf;
@@ -21,7 +47,7 @@
   --textColor: var(--white);
   --lineColor: var(--purple);
   --headerText: var(--white);
-  --cardBg: var(--grey);
+  --cardBg: var(--darkGrey);
   --cardText: var(--white);
 	--anchorColor: var(--darkRed);
 	--navColor: var(--deepPurple);
@@ -34,34 +60,9 @@
 	--linkColor: var(--lightPink);
 	--linkHover: var(--white);
   --footerColor: var(--deepPurple);
-
-  /*Styles*/
-  --line: solid 2px var(--lineColor);
-  --headerHeight: 5rem;
-  --containerPadding: 10%;
-
-  /*Elevations*/
-  --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --level-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --level-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --cardShadow: 0 2px 18px rgb(34 34 34 / 20%);
-  --cardTransition: box-shadow 200ms;
-
-  /* Fonts */
-  --headingFont: 'Source Sans Pro', sans-serif;
-  --bodyFont: 'Libre Baskerville', serif;
-  --baseFontSize: 130%;
-  --h1: 3.052rem;
-  --h2: 2.441rem;
-  --h3: 1.953rem;
-  --h4: 1.563rem;
-  --h5: 1.25rem;
-	--smallText: 0.8rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
+.light {
     /*light mode pallette*/
     --white: #fefefe;
     --lightGrey: #bfbfbf;
@@ -79,10 +80,10 @@
     --textColor: var(--black);
     --lineColor: var(--grey);
     --headerText: var(--black);
-    --cardBg: var(--lightGrey);
+    --cardBg: var(--white);
     --cardText: var(--black);
 	  --anchorColor: var(--darkRed);
-	  --navColor: var(--lightBlue);
+	  --navColor: var(--white);
 	  --navText: var(--darkGrey);
 	  --navHover: var(--blacker);
 	  --headerColor: var(--lightBlue);
@@ -91,15 +92,6 @@
     --borderColor: var(--lightGrey);
 	  --linkHover: var(--lightGrey);
     --footerColor: var(--lightBlue);
-  }
-
-  pre {
-    color: var(--white);
-  }
-
-  nav h2 {
-    color: var(--navText);
-  }
 }
 
 *,
@@ -153,27 +145,29 @@ h5 {font-size: var(--h5);}
 
 small, .text_small {font-size: var(--smallText);}
 
-nav {
-	background-color: var(--navColor);
-	height: 100vw;
-	width: 16rem;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 5;
-	padding-top: 8rem;
-	padding-left: 2rem;
-	display: none;
+button#theme-toggle {
+  background: none;
+  border: none;
+  color: var(--textColor);
 }
 
-nav ul {
+#bulb {
+  display: none;
+}
+
+#moon {
+  display: none;
 }
 
 footer {
   width: 100vw;
   background: var(--footerColor);
   height: 5rem;
-  padding-left: 48%;
+}
+
+footer div {
+  width: 10rem;
+  margin: auto;
 }
 
 footer p {
@@ -194,17 +188,23 @@ h1.mobile-h1 {
 	padding: 1rem 1rem 0 1rem;
 }
 
+header {
+  box-shadow: var(--boxShadow);
+}
+
 header.mobile {
   position: fixed;
   top: 0;
   left: 0;
   padding-left: 1rem;
   padding-right: 1rem;
-  background: var(--navColor);
   width: 100vw;
+  line-height: var(--headerHeight);
+}
+
+header.mobile nav {
   display: flex;
   justify-content: space-between;
-  line-height: var(--headerHeight);
 }
 
 div.mobile-social {
@@ -224,8 +224,11 @@ div.mobile-social a {
   color: var(--textColor);
 }
 
-header.desktop {
+header {
 	background-color: var(--headerColor);
+}
+
+header.desktop {
 	position: absolute;
 	width: 100vw;
 	top: 0;
@@ -235,8 +238,13 @@ header.desktop {
 	height: var(--headerHeight);
 	display: none;
 	justify-content: space-between;
-	padding-left: calc(16rem + 9%);
-	padding-right: 18%;
+}
+
+header.desktop nav {
+  max-width: 60rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .git-logo {
@@ -261,6 +269,15 @@ p a {
 }
 
 header a {
+	--anchorText: var(--white);
+	font-size: var(--h4);
+	line-height: var(--headerHeight);
+	margin: 0;
+	color: var(--anchorText);
+}
+
+header button {
+  cursor: pointer;
 	--anchorText: var(--white);
 	font-size: var(--h4);
 	line-height: var(--headerHeight);
@@ -305,11 +322,6 @@ li {
 	list-style: none;
 }
 
-.home {
-	max-width: 60rem;
-	margin: auto;
-}
-
 .intro {
 	margin-bottom: 5rem;
 }
@@ -332,10 +344,11 @@ summary {
 }
 
 #contentDiv {
+  margin: auto;
+  max-width: 60rem;
 	min-height: calc(100vh - var(--headerHeight));
 	padding-bottom: 5rem;
 	padding: 1rem;
-  max-width: 100vw;
   margin-top: var(--headerHeight);
 }
 
@@ -355,8 +368,13 @@ summary {
 	overflow: auto;
 }
 
+pre {
+  box-shadow: var(--boxShadow);
+}
+
 .card {
-	width: 20rem;
+  box-shadow: var(--boxShadow);
+	width: var(--cardWidth);
   max-width: 90vw;
 	min-height: 20rem;
 	background-color: var(--cardBg);
@@ -364,8 +382,17 @@ summary {
 	margin-bottom: 2rem;
 }
 
+.card a {
+  display: block;
+  min-height: 20rem;
+}
+
+div.card:hover {
+  box-shadow: var(--boxShadowHover);
+}
+
 .card img {
-	width: 20rem;
+	width: var(--cardWidth);
   max-width: 90vw;
 	max-height: 12rem;
 	object-fit: cover;
@@ -389,7 +416,8 @@ div.card-content {
 }
 
 .ring-widget a + a {
-  padding-left: 1rem;
+  padding-left: 4rem;
+  text-align: center;
 }
 
 .ring-about {
@@ -401,31 +429,38 @@ div.card-content {
   display: none;
 }
 
+  .craftering {
+    padding: 1rem;
+	  margin: auto;
+	  text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    max-width: 20rem;
+  }
+
+
 footer {
   display: none;
 }
 
 @media (max-width: 1600px) {
 	.cards {
-		padding-left: calc(50% - 10rem);
-		padding-right: calc(50% - 10rem);
 	}
 }
 
 @media (min-width: 1600px) {
 	.cards {
+    margin: auto;
+    width: calc((var(--cardWidth) * 2) + var(--cardGap));
 		--gridCols: 2;
 		display: grid;
 		grid-template-columns: repeat(var(--gridCols), 1fr);
-		gap: 5px;
-		margin: auto;
+    grid-gap: var(--cardGap);
 	}
 }
 
 @media (min-width: 1300px) {
-  main {
-    padding-left: 16rem;
-  }
 
   footer {
     display: block;
@@ -442,7 +477,7 @@ footer {
   h5 {font-size: var(--h5);}
 
 	header.desktop {
-		display: flex;
+		display: block;
 	}
 
   header.mobile {
@@ -459,22 +494,14 @@ footer {
 
 	#contentDiv {
 		margin-top: var(--headerHeight);
-		padding-left: 10%;
-		padding-right: 20%;
 		z-index: -5;
-		border-top: solid 4px var(--borderColor);
-		border-left: solid 4px var(--borderColor);
 		border-radius: 2px;
 		min-height: calc(100vh - var(--headerHeight));
 		padding-bottom: 5rem;
 	}
 
   #web-ring {
-		border-left: solid 4px var(--borderColor);
-		padding-left: 10%;
-		padding-right: 20%;
     padding-bottom: 3rem;
-		border-bottom: solid 4px var(--borderColor);
   }
 
   .ring-desktop {
@@ -493,10 +520,6 @@ footer {
     max-width: 40rem;
   }
 
-  .craftering {
-	  margin: auto;
-	  text-align: center;
-  }
 
   .ring-widget {
     display: flex;
@@ -509,12 +532,9 @@ footer {
   .ring-widget button {
     background: var(--buttonColor);
     box-shadow: var(--cardShadow:);
+    color: var(--linkColor);
     border: none;
     cursor: pointer;
-  }
-
-  .craftering .center-ring {
-    padding: 0 1rem;
   }
 
 	.cards-grid {

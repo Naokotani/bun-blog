@@ -1,0 +1,6 @@
+<div id="contentDiv"
+		 hx-on::after-swap="window.scrollTo({top: 0, behavior: 'smooth'})"
+		 hx-get="{{API_URL}}cards"
+		 hx-trigger="load delay:300ms"
+		 hx-swap="innerHTML"
+		 hx-target="#contentDiv"></div>

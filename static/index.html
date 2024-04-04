@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en>
-		<head	>
+<html lang="en">
+		<head>
 				<meta charset="UTF-8"/>
 				<title>Chris Hughes dot Dev</title>
+        <link rel="shortcut icon" type="image/png" href="images/favicon-16x16.png"/>
 				<link rel="stylesheet" type="text/css" href="css/normalize.css">
 				<link rel="stylesheet" type="text/css" href="css/styles.css">
 				<link rel="alternate" type="application/rss+xml" title="Chris Hughes dot Dev" href="/rss">
@@ -20,9 +21,11 @@
                 crossorigin="anonymous">
         </script>
         <script src="js/menu.js" defer></script>
+        <script src="js/colors.js" defer></script>
 		</head>
 		<body>
 				<header class="desktop">
+            <nav>
 						<a href="#"
 							 hx-get="{{API_URL}}cards"
 							 hx-swap="innerHTML"
@@ -40,19 +43,26 @@
 						    <a href="https://github.com/Naokotani/">
                     <i class="fa-brands fa-github"></i>
 						    </a>
+                <button id="theme-toggle">
+                    <i id="moon" class="fa-regular fa-moon"></i>
+                    <i id="bulb" class="fa-regular fa-lightbulb"></i>
+                </button>
             </div>
+            </nav>
 				</header>
         <header class="mobile">
-						<a href="#"
-							 hx-get="{{API_URL}}cards"
-							 hx-swap="innerHTML"
-							 hx-push-url="{{API_URL}}"
-							 hx-target="#contentDiv">
-						<h2>Chris Hughes.Dev</h2>
-						</a>
-            <a href="javascript:void(0);" onclick="handleSocial()">
-                <i class="fa fa-bars menu"></i>
-            </a>
+            <nav>
+						    <a href="#"
+							     hx-get="{{API_URL}}cards"
+							     hx-swap="innerHTML"
+							     hx-push-url="{{API_URL}}"
+							     hx-target="#contentDiv">
+						        <h2>Chris Hughes.Dev</h2>
+						    </a>
+                <a href="javascript:void(0);" onclick="handleSocial()">
+                    <i class="fa fa-bars menu"></i>
+                </a>
+            </nav>
         </header>
         <div id="social-menu" style="display: none;">
             <div class="mobile-social">
@@ -67,30 +77,25 @@
 						    </a>
             </div>
         </div>
-				<nav hx-get="{{API_URL}}blog"
-						 hx-trigger="load delay:300ms"
-						 class="linksBar"
-						 hx-swap="outerHTML">
-				</nav>
-        <main>
-				<div id="contentDiv"
-						 hx-on::after-swap="window.scrollTo({top: 0, behavior: 'smooth'})"
-						 hx-get="{{API_URL}}cards"
-						 hx-trigger="load delay:300ms"
-						 hx-swap="innerHTML"
-						 hx-target="#contentDiv"></div>
+        {{{post}}}
+        {{{content}}}
         <div id="web-ring">
             <div
               href="#"
-			        hx-get="{{API_URL}}/ring/next/999"
+			        hx-get="{{API_URL}}ring/next/999"
 			        hx-target="#web-ring"
-					    hx-trigger="load delay:300ms"
+			        hx-trigger="load delay:300ms"
 			        hx-swap="innerHTML">
             </div>
         </div>
-        </main>
 		</body>
-    <footer>
-        <p>&copy; Chris Hughes 2024</p>
-    </footer>
+        <footer>
+            <div>
+            <a href="{{API_URL}}">Home</a>
+            <a href="{{API_URL}}">Email</a>
+            <div>
+                <small>&copy; Chris Hughes 2024</small>
+            </div>
+            </div>
+        </footer>
 </html>

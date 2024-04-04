@@ -38,7 +38,7 @@ export default async function getStatic(url: string) {
 				const file = Bun.file(`static/js/${filename}`);
 				return new Response(file, {
           headers: {
-            "Content-Type": "script/js",
+            "Content-Type": "text/javascript",
           },
         });
 			} catch (e) {
@@ -49,10 +49,14 @@ export default async function getStatic(url: string) {
 			}
 		}
 
-		if (/\w+\.svg$/.test(filename)) {
+		  if (/\w+\.(svg)$/.test(filename)) {
 			try {
 				const file = Bun.file(`static/icons/${filename}`);
-				return new Response(file);
+				  return new Response(file, {
+          headers: {
+            "Content-Type": "image/x-icon",
+          },
+          });
 			} catch(e) {
 				console.error(e);
 				return new Response("404: file not found");
