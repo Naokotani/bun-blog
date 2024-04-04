@@ -370,6 +370,7 @@ summary {
 
 pre {
   box-shadow: var(--boxShadow);
+  padding: 1rem;
 }
 
 .card {
