@@ -1,5 +1,5 @@
 {
-  "dependencies": { "cheerio": "^1.0.0-rc.12", "mustache": "^4.2.0", "sharp": "^0.33.2" },
+  "dependencies": { "@types/mustache": "^4.2.5", "cheerio": "^1.0.0-rc.12", "mustache": "^4.2.0", "sharp": "^0.33.2" },
   "devDependencies": {
     "@types/bun": "^1.0.5"
   }

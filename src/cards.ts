@@ -1,11 +1,19 @@
 import { readdir } from "node:fs/promises";
 import path from "path";
 import { load } from "cheerio";
-import getRing from "./ring";
-const Mustache = require("mustache");
+import Mustache from "mustache";
 const POSTS_PATH = path.join(__dirname, "../posts/");
 const IMAGES_PATH = path.join(__dirname, "../static/images/");
 const API_URL = process.env.API_URL;
+
+interface Link {
+  link: string;
+  title: string;
+  API_URL: string;
+  image: string;
+  summary: string;
+  date: Date;
+}
 
 export default async function getCards() {
   const files = await readdir(POSTS_PATH);
@@ -13,7 +21,7 @@ export default async function getCards() {
   const template = await Bun.file("templates/card.html").text();
   const intro = await Bun.file("templates/intro.html").text();
 
-  let links: object[] = [];
+  let links: Link[] = [];
 
   for (let file of files) {
     const name = file.split(".");
@@ -23,16 +31,24 @@ export default async function getCards() {
     const post = await Bun.file("posts/" + file).text();
     const $ = load(post);
     const summary = $("summary").text();
+    const dateHtml = $("small").text();
+    const date = dateHtml.replace("Published: ", "");
 
-    const link = {
+    console.log(date);
+    const link: Link = {
       link: file,
       title: makeTitle(file),
-      API_URL: API_URL,
+      API_URL: API_URL ? API_URL : "",
       image: `${images[index]}`,
       summary: summary,
+      date: new Date(date),
     };
     links.push(link);
   }
+
+  links.sort(function (a: Link, b: Link) {
+      return b.date.getTime() - a.date.getTime();
+  });
 
   const view = {
     intro: intro,
