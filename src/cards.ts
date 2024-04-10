@@ -34,7 +34,6 @@ export default async function getCards() {
     const dateHtml = $("small").text();
     const date = dateHtml.replace("Published: ", "");
 
-    console.log(date);
     const link: Link = {
       link: file,
       title: makeTitle(file),
@@ -47,7 +46,7 @@ export default async function getCards() {
   }
 
   links.sort(function (a: Link, b: Link) {
-      return b.date.getTime() - a.date.getTime();
+    return b.date.getTime() - a.date.getTime();
   });
 
   const view = {
@@ -55,13 +54,7 @@ export default async function getCards() {
     links: links,
   };
 
-  const html = Mustache.render(template, view);
-
-  return new Response(html, {
-    headers: {
-      "Content-Type": "text/html",
-    },
-  });
+  return Mustache.render(template, view);
 }
 
 function makeTitle(slug: string) {

@@ -77,16 +77,13 @@
 						    </a>
             </div>
         </div>
-        {{{post}}}
-        {{{content}}}
+        <div id="contentDiv"
+		        hx-on::after-swap="window.scrollTo({top: 0, behavior: 'smooth'})">
+            {{{post}}}
+            {{{content}}}
+        </div>
         <div id="web-ring">
-            <div
-              href="#"
-			        hx-get="{{API_URL}}ring/next/999"
-			        hx-target="#web-ring"
-			        hx-trigger="load delay:300ms"
-			        hx-swap="innerHTML">
-            </div>
+            {{{ring}}}
         </div>
 		</body>
         <footer>

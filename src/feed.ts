@@ -1,4 +1,4 @@
-const Mustache = require("mustache");
+import Mustache from 'mustache';
 const POSTS_PATH = path.join(__dirname, "../posts/");
 import { readdir } from "node:fs/promises";
 import path from "path";

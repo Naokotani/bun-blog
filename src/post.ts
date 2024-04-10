@@ -1,28 +1,21 @@
 import notFound from "./notFound";
-const Mustache = require("mustache");
+import Mustache from "mustache";
+import getRing from "./ring";
 const API_URL = process.env.API_URL;
 
 export default async function getPost(blog: string, hx: boolean) {
   const post = await getFileContents(`posts/${blog}`);
   const index = await getFileContents("static/index.html");
-  const content = await getFileContents("templates/content.html");
-
-  const blogView = {
-    API_URL: API_URL,
-    post: post,
-  };
-
-  const body = Mustache.render(content, blogView);
 
   if (!index || !post) return notFound();
 
   if (hx) {
     return new Response(post);
   } else {
-      const div = `<div id="contentDiv">${post}</div>`
     const view = {
       API_URL: API_URL,
-      post: div,
+      post: post,
+      ring: await getRing("0", true),
     };
 
     const html = Mustache.render(index, view);

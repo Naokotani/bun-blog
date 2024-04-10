@@ -22,7 +22,9 @@ Bun.serve({
       }
       if (url.pathname === "/") return await getHome();
       if (url.pathname === "/blog") return getBlogs();
-      if (url.pathname === "/cards") return getCards();
+      if (url.pathname === "/cards") {
+        return new Response(await getCards());
+      }
       if (url.pathname === "/rss") return feed();
       if (/\/ring\/(prev|next)\/([0-9]+)/.test(req.url)) {
         const match = req.url.match(/[0-9]+$/);
