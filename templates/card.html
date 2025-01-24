@@ -1,23 +1,22 @@
-<div class="home">
-		<div class="intro">
-				{{{intro}}}
-		</div>
-		<div class="cards">
+<title>Chris Hughes dot Dev</title>
+<div class="intro">
+		{{{intro}}}
+</div>
+<div class="cards">
 		{{#links}}
-				<div class="cards-grid">
-						<div class="card">
-								<a href="#"
-									 hx-get="{{API_URL}}blog/{{link}}"
-									 hx-push-url="true" hx-target="#contentDiv"
-									 hx-swap="innerHTML">
-										<img alt="{{title}} picture" src="/images/{{image}}"/>
-										<div class="card-content">
-												<h2>{{title}}</h2>
-												<p>{{summary}}</p>
-										</div>
-								</a>
-						</div>
+		<div class="cards-grid">
+				<div class="card">
+						<a href="#"
+							 hx-get="{{API_URL}}blog/{{link}}"
+							 hx-push-url="true" hx-target="#contentDiv"
+							 hx-swap="innerHTML">
+								<img alt="{{title}} picture" src="/images/{{image}}"/>
+								<div class="card-content">
+										<h2>{{title}}</h2>
+										<p>{{summary}}</p>
+								</div>
+						</a>
 				</div>
-		{{/links}}
 		</div>
+		{{/links}}
 </div>
