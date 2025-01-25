@@ -4,7 +4,7 @@ import getRing from "./ring";
 const API_URL = process.env.API_URL;
 
 export default async function getPost(blog: string, hx: boolean) {
-  const post = await getFileContents(`posts/${blog}`);
+  const post = await getFileContents(`posts/html/${blog}`);
   const index = await getFileContents("static/index.html");
 
   if (!index || !post) return notFound();

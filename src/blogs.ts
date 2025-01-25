@@ -1,7 +1,7 @@
 import { readdir } from "node:fs/promises";
 import path from "path";
 import Mustache from "mustache";
-const POSTS = path.join(__dirname, "../posts/");
+const POSTS = path.join(__dirname, "../posts/html/");
 const API_URL = process.env.API_URL;
 
 export default async function getBlogs() {

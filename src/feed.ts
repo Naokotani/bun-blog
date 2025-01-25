@@ -1,5 +1,5 @@
 import Mustache from 'mustache';
-const POSTS_PATH = path.join(__dirname, "../posts/");
+const POSTS_PATH = path.join(__dirname, "../posts/html/");
 import { readdir } from "node:fs/promises";
 import path from "path";
 import { load } from "cheerio";

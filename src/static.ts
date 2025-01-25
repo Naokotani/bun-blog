@@ -65,7 +65,7 @@ export default async function getStatic(url: string) {
 
     if (/\w+\.(png|jpg)$/.test(filename)) {
       try {
-        const file = Bun.file(`static/images/${filename}`);
+        const file = Bun.file(`posts/images/${filename}`);
         return new Response(file);
       } catch (e) {
         console.error(e);

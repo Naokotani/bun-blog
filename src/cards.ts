@@ -2,8 +2,8 @@ import { readdir } from "node:fs/promises";
 import path from "path";
 import { load } from "cheerio";
 import Mustache from "mustache";
-const POSTS_PATH = path.join(__dirname, "../posts/");
-const IMAGES_PATH = path.join(__dirname, "../static/images/");
+const POSTS_PATH = path.join(__dirname, "../posts/html/");
+const IMAGES_PATH = path.join(__dirname, "../posts/images/");
 const API_URL = process.env.API_URL;
 
 interface Link {
@@ -19,7 +19,7 @@ export default async function getCards() {
   const files = await readdir(POSTS_PATH);
   const images = await readdir(IMAGES_PATH);
   const template = await Bun.file("templates/card.html").text();
-  const intro = await Bun.file("templates/intro.html").text();
+  const intro = await Bun.file("posts/intro/intro.html").text();
 
   let links: Link[] = [];
 
@@ -28,7 +28,7 @@ export default async function getCards() {
     const index: number = images.findIndex(
       (e) => e.startsWith("thumb") && e.includes(name[0]),
     );
-    const post = await Bun.file("posts/" + file).text();
+    const post = await Bun.file("posts/html/" + file).text();
     const $ = load(post);
     const summary = $("summary").text();
     const dateHtml = $("small").text();

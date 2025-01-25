@@ -2,7 +2,7 @@ import { watch } from "fs";
 import sharp from "sharp";
 import path from "path";
 import fs from "node:fs/promises";
-const imagesPath = path.join(__dirname, "../static/images");
+const imagesPath = path.join(__dirname, "../posts/images");
 import { access, constants } from "node:fs/promises";
 
 const processImages = async () => {

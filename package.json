@@ -1,6 +1,18 @@
 {
-  "dependencies": { "@types/mustache": "^4.2.5", "cheerio": "^1.0.0-rc.12", "mustache": "^4.2.0", "sharp": "^0.33.2" },
+  "name": "bun-blog",
+  "module": "index.ts",
+  "type": "module",
   "devDependencies": {
-    "@types/bun": "^1.0.5"
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/mustache": "^4.2.5",
+    "cheerio": "^1.0.0",
+    "mustache": "^4.2.0",
+    "sharp": "^0.33.5"
   }
 }

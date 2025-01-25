@@ -10,9 +10,9 @@ import processImages from "./src/processImages";
 
 processImages();
 
-console.log(`Launching server on port ${process.env.PORT}`);
+console.log(`Launching server on port ${3000}`);
 Bun.serve({
-  port: process.env.PORT,
+  port: 3000,
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
 
