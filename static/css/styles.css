@@ -118,6 +118,10 @@ body {
   color: var(--textColor);
 }
 
+object.resume {
+  height: 80vh;
+}
+
 #contentDiv {
   margin: auto;
   max-width: 60rem;
@@ -385,6 +389,20 @@ div.card:hover {
 	object-fit: cover;
 }
 
+.cards-grid {
+	display: flex;
+	justify-content: center;
+}
+
+.cards {
+  margin: auto;
+  width: calc((var(--cardWidth) * 2) + var(--cardGap));
+  --gridCols: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--gridCols), 1fr);
+  gap: var(--cardGapVert) var(--cardGapHorz);
+}
+
 .card h2 {
 	margin: 0;
 	font-size: var(--h5);
@@ -544,11 +562,6 @@ footer a + a {
     border: none;
     cursor: pointer;
   }
-
-	.cards-grid {
-		display: flex;
-		justify-content: center;
-	}
 
 	.card img {
 		max-width: 20rem;
