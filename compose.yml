@@ -13,7 +13,26 @@ services:
       - type: bind
         source: ./static
         target: /usr/app/static
+      - blog:/usr/app/static/json
     environment:
       - NODE_ENV=development
       - API_URL=http://localhost:3000/
+    networks:
+      - frontend
     user: bun
+  webring:
+    image: webring
+    build:
+      context: ./scripts/
+      dockerfile: Dockerfile
+    depends_on:
+      - bun-blog
+    networks:
+    - backend
+    volumes:
+      - blog:/usr/app/static/json
+volumes:
+  blog:
+networks:
+  frontend:
+  backend:

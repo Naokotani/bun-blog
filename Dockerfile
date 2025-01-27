@@ -1,6 +1,6 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 AS base
+FROM oven/bun:canary-debian AS base
 WORKDIR /usr/app
 
 # install dependencies into temp directory
@@ -30,7 +30,9 @@ COPY ./src/ /usr/app/src
 COPY ./static/ /usr/app/static
 COPY ./templates/ /usr/app/templates
 
-# run the app
+WORKDIR /usr/app
+
 USER bun
+# run the app
 EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "run", "index.ts" ]

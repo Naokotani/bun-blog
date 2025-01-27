@@ -1,7 +1,9 @@
 #!/bin/sh
 
-cd ~/src/craftering
+cd /usr/src/craftering
 
 git pull https://codeberg.org/SystemCrafters/craftering/
 
-cp ~/src/craftering/websites.json ~/bun-blog/craftering/
+mkdir -p /usr/app/static/json
+
+cp /usr/src/craftering/websites.json /usr/app/static/json/

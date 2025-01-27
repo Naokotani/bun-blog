@@ -11,12 +11,11 @@ interface Ring {
 }
 
 export default async function getRing(index: string, next: boolean) {
-  const json = await Bun.file("posts/craftering/websites.json").text();
+  const json = await Bun.file("static/json/websites.json").text();
   const template = await Bun.file("templates/web-ring.html").text();
   const arr = await JSON.parse(json);
   const rings = arr.filter((ring: Ring) => {
-//    return ring.url !== "https://chris-hughes.dev";
-    return ring.url !== "http://localhost:3000";
+    return ring.url !== "https://chris-hughes.dev";
   });
 
   const length = rings.length;
@@ -32,7 +31,6 @@ export default async function getRing(index: string, next: boolean) {
   const view = {
     API_URL: API_URL,
     name: site.name,
-    url: site.url,
     rss: site.rss,
     about: site.about,
     index: newIndex,
