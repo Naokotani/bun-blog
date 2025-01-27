@@ -1,5 +1,6 @@
 import feed from "./src/feed";
 import notFound from "./src/notFound";
+import getResume from "./src/resume"
 import getHome from "./src/home";
 import getBlogs from "./src/blogs";
 import getPost from "./src/post";
@@ -16,8 +17,11 @@ Bun.serve({
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
 
+    console.error(req.url)
+    console.error(url.pathname)
+
     try {
-      if (/\.(css|png|svg|js|json)$/.test(req.url)) {
+      if (/\.(css|png|svg|js|json|pdf)$/.test(req.url)) {
         return await getStatic(req.url);
       }
       if (url.pathname === "/") return await getHome();
@@ -25,6 +29,7 @@ Bun.serve({
       if (url.pathname === "/cards") {
         return new Response(await getCards());
       }
+      if (url.pathname === "/resume") return await getResume(req.headers.get("hx-request") === "true");
       if (url.pathname === "/rss") return feed();
       if (/\/ring\/(prev|next)\/([0-9]+)/.test(req.url)) {
         const match = req.url.match(/[0-9]+$/);
@@ -37,7 +42,7 @@ Bun.serve({
         const match = req.url.match(/\/blog\/(.*\.html)/);
         return getPost(match![1], req.headers.get("hx-request") === "true");
       }
-      return notFound();
+      return notFound("Path not found.");
     } catch (e) {
       console.error("Error:", e);
       return new Response("500 - Internal Server Error", {

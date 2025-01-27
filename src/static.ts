@@ -74,6 +74,20 @@ export default async function getStatic(url: string) {
         });
       }
     }
+
+    if (/\w+\.(pdf)$/.test(filename)) {
+      try {
+        const file = Bun.file(`posts/resume/resume.pdf`);
+        return new Response(file);
+      } catch (e) {
+        console.error(e);
+        return new Response("404: file not found", {
+          status: 404,
+        });
+      }
+    }
+
+
   }
   return new Response("404: file not found", {
     status: 404,

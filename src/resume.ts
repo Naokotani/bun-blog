@@ -1,22 +1,20 @@
 import notFound from "./notFound";
 import Mustache from "mustache";
-import getRing from "./ring";
 import getFileContents from "./fileContents";
 const API_URL = process.env.API_URL;
 
-export default async function getPost(blog: string, hx: boolean) {
-  const post = await getFileContents(`posts/html/${blog}`);
+export default async function getResume(hx: boolean) {
   const index = await getFileContents("static/index.html");
+  const resume = await getFileContents("templates/resume.html");
 
-  if (!index || !post) return notFound("Files not found for post.");
+  if (!resume || !index) return notFound("Files not found for resume.");
 
   if (hx) {
-    return new Response(post);
+    return new Response(resume);
   } else {
     const view = {
       API_URL: API_URL,
-      post: post,
-      ring: await getRing("0", true),
+      post: resume
     };
 
     const html = Mustache.render(index, view);
