@@ -17,20 +17,27 @@ Bun.serve({
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
 
-    console.error(req.url)
-    console.error(url.pathname)
-
     try {
       if (/\.(css|png|svg|js|json|pdf)$/.test(req.url)) {
         return await getStatic(req.url);
       }
-      if (url.pathname === "/") return await getHome();
-      if (url.pathname === "/blog") return getBlogs();
+
+      if (url.pathname === "/")
+        return await getHome();
+
+      if (url.pathname === "/blog")
+        return getBlogs();
+
       if (url.pathname === "/cards") {
         return new Response(await getCards());
       }
-      if (url.pathname === "/resume") return await getResume(req.headers.get("hx-request") === "true");
-      if (url.pathname === "/rss") return feed();
+
+      if (url.pathname === "/resume")
+        return await getResume(req.headers.get("hx-request") === "true");
+
+      if (url.pathname === "/rss")
+        return feed();
+
       if (/\/ring\/(prev|next)\/([0-9]+)/.test(req.url)) {
         const match = req.url.match(/[0-9]+$/);
         const next = req.url.match(/(next)/) ? true : false;
@@ -38,10 +45,12 @@ Bun.serve({
           ? new Response(await getRing(match[0], next))
           : new Response("Not Found");
       }
+
       if (/\/blog\/.*\.html/.test(req.url)) {
         const match = req.url.match(/\/blog\/(.*\.html)/);
         return getPost(match![1], req.headers.get("hx-request") === "true");
       }
+
       return notFound("Path not found.");
     } catch (e) {
       console.error("Error:", e);
