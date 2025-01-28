@@ -14,4 +14,4 @@ RUN /usr/scripts/webring.sh
 
 RUN echo "0 4 * * * /usr/scripts/webring.sh" > /etc/crontabs/root
 
-CMD crond -f
+CMD ["crond", "-f"]
