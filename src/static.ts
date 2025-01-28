@@ -63,6 +63,18 @@ export default async function getStatic(url: string) {
       }
     }
 
+    if (/favicon-16x16\.png$/.test(filename)) {
+      try {
+        const file = Bun.file(`static/icons/favicon-16x16.png`);
+        return new Response(file);
+      } catch (e) {
+        console.error(e);
+        return new Response("404: file not found", {
+          status: 404,
+        });
+      }
+    }
+
     if (/\w+\.(png|jpg)$/.test(filename)) {
       try {
         const file = Bun.file(`posts/images/${filename}`);
