@@ -1,12 +1,12 @@
 <nav>
-<h2 class="post-header">Projects</h2>
-		<ul>
-				{{#links}}
-				<li>
-						<a href="#" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv" hx-swap="innerHTML">
-								{{label}}
-						</a>
-				</li>
-				{{/links}}
-		</ul>
+  <h2 class="post-header">Projects</h2>
+  <ul>
+    {{#links}}
+    <li>
+      <a href="#" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv" hx-swap="innerHTML">
+        {{label}}
+      </a>
+    </li>
+    {{/links}}
+  </ul>
 </nav>
