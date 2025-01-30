@@ -250,6 +250,10 @@ button#theme-toggle-mobile {
   color: var(--textColor);
 }
 
+header nav a {
+  font-family: var(--headingFont);
+}
+
 
 #bulb {
   display: none;
