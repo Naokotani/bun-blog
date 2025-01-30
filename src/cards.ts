@@ -11,6 +11,7 @@ interface Link {
   title: string;
   API_URL: string;
   image: string;
+  tech: string,
   summary: string;
   date: Date;
 }
@@ -31,7 +32,8 @@ export default async function getCards() {
     const post = await Bun.file("posts/html/" + file).text();
     const $ = load(post);
     const summary = $("summary").text();
-    const dateHtml = $("small").text();
+    const dateHtml = $("small.date").text();
+    const tech = $("small.tech").text();
     const date = dateHtml.replace("Published: ", "");
 
     const link: Link = {
@@ -39,13 +41,14 @@ export default async function getCards() {
       title: makeTitle(file),
       API_URL: API_URL ? API_URL : "",
       image: `${images[index]}`,
+      tech: tech,
       summary: summary,
       date: new Date(date),
     };
     links.push(link);
   }
 
-  links.sort(function (a: Link, b: Link) {
+  links.sort(function(a: Link, b: Link) {
     return b.date.getTime() - a.date.getTime();
   });
 

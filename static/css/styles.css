@@ -130,6 +130,7 @@ object.resume {
   min-height: calc(100vh - var(--headerHeight));
   padding-bottom: 5rem;
   padding-top: 3rem;
+  max-width: 100vw;
   margin-top: var(--headerHeight);
 }
 
@@ -195,7 +196,16 @@ h5 {
 }
 
 .skills-list {
-  margin-top: 2rem;
+  margin-top: 0;
+}
+
+.intro {
+  max-width: 90vw;
+  margin: auto;
+}
+
+.home-header {
+  display: none;
 }
 
 small,
@@ -225,7 +235,7 @@ a.anchor {
 header h2 {
   line-height: var(--headerHeight);
   margin: 0;
-  font-size: var(--h3);
+  font-size: var(--h4);
 }
 
 button#theme-toggle {
@@ -234,11 +244,26 @@ button#theme-toggle {
   color: var(--textColor);
 }
 
+button#theme-toggle-mobile {
+  background: none;
+  border: none;
+  color: var(--textColor);
+}
+
+
 #bulb {
   display: none;
 }
 
 #moon {
+  display: none;
+}
+
+#bulb-mobile {
+  display: none;
+}
+
+#moon-mobile {
   display: none;
 }
 
@@ -268,13 +293,19 @@ div.mobile-social {
   right: 0;
   padding-right: 1rem;
   padding-left: 1rem;
-  height: 8rem;
+  height: 10rem;
   display: none;
   display: grid;
 }
 
+
 div.mobile-social a {
   line-height: 2rem;
+  color: var(--textColor);
+}
+
+div.mobile-social button {
+  height: 2rem;
   color: var(--textColor);
 }
 
@@ -387,6 +418,7 @@ summary {
 /* Code Blocks */
 code {
   color: var(--code);
+  overflow-x: auto;
 }
 
 .org-src-container {
@@ -395,10 +427,11 @@ code {
   border-radius: 5px;
   box-shadow: var(--level-4);
   overflow: auto;
+  max-width: var(--contentDivWidth);
+  box-shadow: var(--boxShadow);
 }
 
 pre {
-  box-shadow: var(--boxShadow);
   padding: 1rem;
 }
 
@@ -416,6 +449,18 @@ pre {
 .card a {
   display: block;
   min-height: 20rem;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: var(--h4);
+  border-bottom: 2px solid var(--textColor);
+}
+
+.card h3 {
+  margin: 0;
+  margin-top: 1rem;
+  font-size: var(--h5);
 }
 
 div.card:hover {
@@ -440,12 +485,9 @@ div.card:hover {
   grid-template-columns: repeat(var(--cardCols), 1fr);
   gap: var(--cardGap);
   margin: auto;
+  max-width: 90vw;
 }
 
-.card h2 {
-  margin: 0;
-  font-size: var(--h5);
-}
 
 div.card-content {
   padding: 1rem;
@@ -515,7 +557,30 @@ footer a+a {
   padding-left: 1.8rem;
 }
 
+
+@media (min-width: 1000px) {
+  .home-header {
+    display: block;
+    font-size: var(--h3);
+  }
+
+  .skills-list {
+    font-size: var(--h4);
+    margin-top: 2rem;
+  }
+
+}
+
 @media (min-width: 1600px) {
+
+  .home-header {
+    font-size: var(--h2);
+  }
+
+  .skills-list {
+    font-size: var(--h3);
+  }
+
   :root {
     --contentDivWidth: 70rem;
   }
@@ -528,7 +593,7 @@ footer a+a {
   }
 }
 
-@media (min-width: 1300px) and (max-width: 1599px) {
+@media (min-width: 1000px) and (max-width: 1599px) {
   :root {
     --contentDivWidth: 50rem;
   }

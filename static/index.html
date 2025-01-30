@@ -40,8 +40,19 @@
             hx-push-url="{{API_URL}}resume"
             hx-target="#contentDiv"
           >Resume</a>
-          <a href="https://github.com/naokotani">
+          <a href="https://github.com/naokotani"
+            target="_blank"
+            rel="noopener noreferrer">
             GitHub
+          </a>
+          <a href="#"
+            hx-get="{{API_URL}}about"
+            hx-swap="innerHTML"
+            hx-push-url="{{API_URL}}about"
+            hx-target="#contentDiv"
+          >About</a>
+          <a href="mailto: chris@chris-hughes.dev">
+            <i class="fa-solid fa-envelope"></i>
           </a>
           <a href="https://chris-hughes.dev/rss">
             <i class="fa-solid fa-rss"></i>
@@ -75,12 +86,18 @@
         <a href="mailto: chris@chris-hughes.dev">
           <i class="fa-solid fa-envelope"></i>
         </a>
-        <a href="https://github.com/Naokotani/">
+        <a href="https://github.com/Naokotani/"
+          target="_blank"
+          rel="noopener noreferrer">
           <i class="fa-brands fa-github"></i>
         </a>
         <a href="{{API_URL}}resume.pdf">
           <i class="fa-regular fa-address-card"></i>
         </a>
+        <button id="theme-toggle-mobile">
+          <i id="moon-mobile" class="fa-regular fa-moon"></i>
+          <i id="bulb-mobile" class="fa-regular fa-lightbulb"></i>
+        </button>
       </div>
     </div>
     <div id="contentDiv"

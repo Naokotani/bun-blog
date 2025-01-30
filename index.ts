@@ -7,6 +7,7 @@ import getPost from "./src/post";
 import getStatic from "./src/static";
 import getCards from "./src/cards";
 import getRing from "./src/ring";
+import getAbout from "./src/about"
 import processImages from "./src/processImages";
 
 processImages();
@@ -18,9 +19,8 @@ Bun.serve({
     const url = new URL(req.url);
 
     try {
-      if (/\.(css|png|svg|js|json|pdf)$/.test(req.url)) {
+      if (/\.(css|png|svg|js|json|pdf|jpg)$/.test(req.url))
         return await getStatic(req.url);
-      }
 
       if (url.pathname === "/")
         return await getHome();
@@ -28,9 +28,11 @@ Bun.serve({
       if (url.pathname === "/blog")
         return getBlogs();
 
-      if (url.pathname === "/cards") {
+      if (url.pathname === "/cards")
         return new Response(await getCards());
-      }
+
+      if (url.pathname === "/about")
+        return (await getAbout(req.headers.get("hx-request") === "true"));
 
       if (url.pathname === "/resume")
         return await getResume(req.headers.get("hx-request") === "true");
