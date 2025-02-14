@@ -31,6 +31,7 @@ export default async function getRing(index: string, next: boolean) {
   const view = {
     API_URL: API_URL,
     name: site.name,
+    url: site.url,
     rss: site.rss,
     about: site.about,
     index: newIndex,

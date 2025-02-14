@@ -30,8 +30,6 @@ COPY ./src/ /usr/app/src
 COPY ./static/ /usr/app/static
 COPY ./templates/ /usr/app/templates
 
-WORKDIR /usr/app
-
 USER bun
 # run the app
 EXPOSE 3000/tcp
