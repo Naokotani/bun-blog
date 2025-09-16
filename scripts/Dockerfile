@@ -1,5 +1,5 @@
 FROM alpine:3.14
-RUN apk add --no-cache git busybox-suid
+RUN apk add --no-cache git
 
 WORKDIR /usr/src
 

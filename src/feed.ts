@@ -4,15 +4,22 @@ import { readdir } from "node:fs/promises";
 import path from "path";
 import { load } from "cheerio";
 
+interface Post {
+  title: string;
+  date: string;
+  link: string;
+  description: string;
+}
+
 export default async function feed() {
   const files = await readdir(POSTS_PATH);
   const xmlTemplate = await Bun.file("templates/rss.xml").text();
 
-  let posts: object[] = [];
+  let posts: Post[] = [];
   for (const file of files) {
     const post = await Bun.file(POSTS_PATH + file).text();
-    const $ = load(post, null, false);
-    const dateText = $("small").text();
+    const $ = load(post);
+    const dateText = $("small.date").text();
     $("small").remove();
     $("summary").remove();
     $("title").remove();
@@ -20,11 +27,16 @@ export default async function feed() {
 
     let dateArr = dateText.split(":");
     dateArr.shift();
-    let date = dateArr.join(":");         
+    let date = dateArr.join(":").trim();
+
+
+    posts.sort(function(a: Post, b: Post) {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 
     posts.push({
       title: makeTitle(file),
-      date: date,
+      date: date.replace('-4:00', ' -0400'),
       link: file,
       description: html,
     });
