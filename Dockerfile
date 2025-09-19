@@ -1,13 +1,17 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:canary-debian AS base
+#Set the working directory
 WORKDIR /usr/app
 
 # install dependencies into temp directory
 # this will cache them and speed up future builds
 FROM base AS install
+# Run a bash command to make a directory
 RUN mkdir -p /temp/dev
+#Copy the these local files to the container
 COPY package.json bun.lock /temp/dev/
+# Use the package.json to install modules
 RUN cd /temp/dev && bun install --frozen-lockfile
 
 # install with --production (exclude devDependencies)

@@ -104,6 +104,16 @@
 
 /* Content Containers */
 
+.pdf-link {
+  margin: auto;
+  width: var(--contentDivWidth);
+}
+
+.pdf-link a {
+  color: var(--anchorColor);
+  font-size: var(--h4);
+}
+
 html {
   font-size: var(--baseFontSize);
   box-sizing: border-box;
@@ -121,7 +131,7 @@ object.resume {
   height: 80vh;
 }
 
-#contentDiv {
+.contentDiv {
   margin: auto;
   width: var(--contentDivWidth);
   min-height: calc(100vh - var(--headerHeight));
@@ -131,7 +141,7 @@ object.resume {
   margin-top: var(--headerHeight);
 }
 
-#contentDiv img {
+.contentDiv img {
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -392,7 +402,7 @@ ul {
 }
 
 li {
-  list-style: none;
+  list-style-type: square;
 }
 
 .intro {
@@ -488,6 +498,7 @@ div.card:hover {
   margin: auto;
   max-width: 90vw;
 }
+
 
 
 div.card-content {
@@ -649,7 +660,7 @@ footer a+a {
     display: block;
   }
 
-  #contentDiv {
+  .contentDiv {
     margin-top: var(--headerHeight);
     z-index: -5;
     border-radius: 2px;

@@ -102,7 +102,7 @@ export default async function getStatic(url: string) {
     if (/\w+\.(pdf)$/.test(filename)) {
       try {
         //TODO This should not be hard coded. Get path form URL
-        const file = Bun.file(`posts/resume/resume.pdf`);
+        const file = Bun.file(`posts/resume/chris_hughes_resume.pdf`);
         return new Response(file);
       } catch (e) {
         console.error(e);

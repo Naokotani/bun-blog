@@ -1,23 +1,30 @@
 import notFound from "./notFound";
 import Mustache from "mustache";
 import getFileContents from "./fileContents";
-const API_URL = process.env.API_URL;
 
 export default async function getResume(hx: boolean) {
   const index = await getFileContents("static/index.html");
-  const resume = await getFileContents("templates/resume.html");
+  const template = await getFileContents("templates/resume.html");
+  const resume = await getFileContents("posts/resume/chris-hughes-resume.html");
 
-  if (!resume || !index) return notFound("Files not found for resume.");
+  if (!resume || !index || !template) return notFound("Files not found for resume.");
+
+  const resumeView = {
+    resume: resume
+  };
+
+  const post = Mustache.render(template, resumeView);
 
   if (hx) {
-    return new Response(resume);
+    return new Response(post);
   } else {
-    const view = {
-      API_URL: API_URL,
-      post: resume
+
+
+    const indexView = {
+      post: post
     };
 
-    const html = Mustache.render(index, view);
+    const html = Mustache.render(index, indexView);
 
     return new Response(html, {
       headers: {
