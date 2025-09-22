@@ -5,7 +5,7 @@
 <div class="cards">
   {{#links}}
   <div class="card">
-    <a href="#" hx-get="/blog/{{link}}" hx-push-url="true" hx-target="#contentDiv" hx-swap="innerHTML">
+    <a href="/blog/{{link}}" hx-get="/blog/{{link}}" hx-push-url="true" hx-target="#contentDiv" hx-swap="innerHTML">
       <img alt="{{title}} picture" src="posts/images/{{image}}" />
       <div class="card-content">
         <h2>{{title}}</h2>

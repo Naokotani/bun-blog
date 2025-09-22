@@ -35,7 +35,6 @@ export default async function getCards() {
     const dateHtml = $("small.date").text();
     const tech = $("small.tech").text();
     const date = dateHtml.replace("Published: ", "").trim();
-    console.log(dateHtml);
 
     const link: Link = {
       link: file,

@@ -3,7 +3,8 @@
   <ul>
     {{#links}}
     <li>
-      <a href="#" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv" hx-swap="innerHTML">
+      <a href="{{url}}blog/{{link}}" hx-push-url="true" hx-get="{{url}}blog/{{link}}" hx-target="#contentDiv"
+        hx-swap="innerHTML">
         {{label}}
       </a>
     </li>
